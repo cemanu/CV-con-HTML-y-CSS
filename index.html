@@ -2,77 +2,180 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>CV - Cesar Manuel Flores Loro</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitae — Genera tu CV</title>
+  <meta name="description" content="Vitae: plataforma simple e intuitiva para crear, editar y descargar tu currículum.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/cv.css">
 </head>
 <body>
-  <div class="container" style="margin-top: -5%;" >
-    <hr class="line-thicker" style="margin-bottom: 1%;">
-    <hr class="line">
-    <h1 class="name">CESAR MANUEL FLORES LORO</h1>
-    <p class="contact">Lima, Perú ♦ 987 654 321 ♦ correo@dominio.pe</p>
+  <!-- LANDING -->
+  <section id="landing" class="landing" aria-label="Inicio">
+    <div class="landing__atmosphere" aria-hidden="true"></div>
+    <header class="landing__top">
+      <span class="brand-mark">Vitae</span>
+      <button type="button" class="btn btn--ghost" data-action="start">Empezar</button>
+    </header>
+    <div class="landing__hero">
+      <h1 class="landing__brand">Vitae</h1>
+      <p class="landing__tagline">Tu currículum, claro y listo para enviar.</p>
+      <p class="landing__lead">Edita, previsualiza y descarga un CV profesional en minutos. Sin cuentas ni complicaciones.</p>
+      <div class="landing__cta">
+        <button type="button" class="btn btn--primary" data-action="start">Crear mi CV</button>
+        <button type="button" class="btn btn--secondary" data-action="start-sample">Ver con ejemplo</button>
+      </div>
+    </div>
+  </section>
 
-    <hr class="line" >
-    <hr class="line-thicker" style="margin-top: 1%;">
+  <!-- APP SHELL -->
+  <div id="app" class="app" hidden>
+    <header class="app__bar">
+      <button type="button" class="brand-mark brand-mark--btn" data-action="home" aria-label="Volver al inicio">Vitae</button>
+      <div class="app__actions">
+        <label class="template-picker">
+          <span class="sr-only">Plantilla</span>
+          <select id="templateSelect" aria-label="Elegir plantilla">
+            <option value="classic">Clásica</option>
+            <option value="modern">Moderna</option>
+            <option value="compact">Compacta</option>
+          </select>
+        </label>
+        <button type="button" class="btn btn--ghost btn--sm" data-action="reset" title="Restablecer">Limpiar</button>
+        <button type="button" class="btn btn--secondary btn--sm" data-action="load-sample">Ejemplo</button>
+        <button type="button" class="btn btn--primary btn--sm" data-action="export">Descargar PDF</button>
+      </div>
+    </header>
 
-    <h2 class="section-title">RESUMEN PERSONAL</h2>
-    <p class="text">
-      Estudiante de Ingeniería Informática en la PUCP, cursando el 8vo ciclo de la carrera.
-      Interesado en el desarrollo y mantenimiento de plataformas tecnológicas,
-      con conocimientos en <b>SQL (MySQL y Oracle)</b>, <b>Java, Python</b>
-      y experiencia en <b>sistemas Linux</b> a nivel de consola, procesos e hilos.
-    </p>
+    <main class="app__main">
+      <aside class="editor" aria-label="Editor del CV">
+        <nav class="editor__tabs" role="tablist">
+          <button type="button" class="tab is-active" role="tab" aria-selected="true" data-panel="perfil">Perfil</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-panel="formacion">Formación</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-panel="experiencia">Experiencia</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-panel="extra">Extra</button>
+        </nav>
 
-    <h2 class="section-title">IDIOMAS</h2>
-    <p class="text">
-      <b>Español</b> - Lengua materna &nbsp;&nbsp;&nbsp; 
-      <b>Inglés</b> - Intermedio Alto B2
-    </p>
+        <div class="editor__panels">
+          <!-- PERFIL -->
+          <section class="panel is-active" id="panel-perfil" role="tabpanel">
+            <h2 class="panel__title">Datos personales</h2>
+            <div class="field-grid">
+              <label class="field field--full">
+                <span>Nombre completo</span>
+                <input type="text" data-path="name" autocomplete="name" placeholder="Ana Pérez García">
+              </label>
+              <label class="field">
+                <span>Ciudad / País</span>
+                <input type="text" data-path="location" placeholder="Lima, Perú">
+              </label>
+              <label class="field">
+                <span>Teléfono</span>
+                <input type="tel" data-path="phone" placeholder="987 654 321">
+              </label>
+              <label class="field">
+                <span>Correo</span>
+                <input type="email" data-path="email" placeholder="correo@dominio.pe">
+              </label>
+              <label class="field">
+                <span>LinkedIn / Web</span>
+                <input type="text" data-path="website" placeholder="linkedin.com/in/…">
+              </label>
+              <label class="field field--full">
+                <span>Resumen profesional</span>
+                <textarea data-path="summary" rows="5" placeholder="Breve presentación de tu perfil y objetivos…"></textarea>
+              </label>
+            </div>
 
+            <div class="section-block">
+              <div class="section-block__head">
+                <h3>Idiomas</h3>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="languages">+ Añadir</button>
+              </div>
+              <div id="list-languages" class="repeat-list"></div>
+            </div>
 
+            <div class="section-block">
+              <div class="section-block__head">
+                <h3>Habilidades</h3>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="skills">+ Añadir</button>
+              </div>
+              <div id="list-skills" class="repeat-list"></div>
+            </div>
+          </section>
 
-    <h2 class="section-title">EDUCACIÓN</h2>
-    <p class="text">
-        <b>Carrera de Ingeniería Informática</b>, En curso, Pontificia Universidad Católica del Perú
-    </p>
+          <!-- FORMACIÓN -->
+          <section class="panel" id="panel-formacion" role="tabpanel" hidden>
+            <div class="section-block">
+              <div class="section-block__head">
+                <h2 class="panel__title">Educación</h2>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="education">+ Añadir</button>
+              </div>
+              <div id="list-education" class="repeat-list"></div>
+            </div>
+            <div class="section-block">
+              <div class="section-block__head">
+                <h3>Certificaciones</h3>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="certifications">+ Añadir</button>
+              </div>
+              <div id="list-certifications" class="repeat-list"></div>
+            </div>
+          </section>
 
+          <!-- EXPERIENCIA -->
+          <section class="panel" id="panel-experiencia" role="tabpanel" hidden>
+            <div class="section-block">
+              <div class="section-block__head">
+                <h2 class="panel__title">Experiencia y actividades</h2>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="experience">+ Añadir</button>
+              </div>
+              <div id="list-experience" class="repeat-list"></div>
+            </div>
+            <div class="section-block">
+              <div class="section-block__head">
+                <h3>Proyectos</h3>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="projects">+ Añadir</button>
+              </div>
+              <div id="list-projects" class="repeat-list"></div>
+            </div>
+          </section>
 
+          <!-- EXTRA -->
+          <section class="panel" id="panel-extra" role="tabpanel" hidden>
+            <div class="section-block">
+              <div class="section-block__head">
+                <h2 class="panel__title">Secciones personalizadas</h2>
+                <button type="button" class="btn btn--ghost btn--sm" data-add="custom">+ Sección</button>
+              </div>
+              <p class="panel__hint">Añade intereses, voluntariado u otras secciones a tu medida.</p>
+              <div id="list-custom" class="repeat-list"></div>
+            </div>
+          </section>
+        </div>
+      </aside>
 
-    <h2 class="section-title">CERTIFICACIONES</h2>
-    <ul class="list">
-      <li><b>Power BI Intermedio-Avanzado</b>, 2024, San Ignacio University Miami (Netzun)</li>
-      <li><b>Manejo de hojas de cálculo en Excel</b>, 2022, University of Colorado Boulder (Coursera)</li>
-    </ul>
-
-
-    <h2 class="section-title">PROYECTOS</h2>
-    <ul class="list">
-      <li>
-        <b>Backend de plataforma web para clínica</b>, PUCP, 2025  
-        <br>Implementación del backend en <b>Java y MySQL</b> para un sistema de gestión de citas médicas, desarrollando servicios REST para gestión de citas, facturación y almacenamiento de datos clínicos, aplicando arquitectura en capas y pruebas de integración.
-      </li>
-      <li>
-        <b>Modelos de Machine Learning para predicción agrícola</b>, PUCP, 2025  
-        <br>Desarrollo de modelos en <b>Python</b> para predecir precios agrícolas. Incluyó limpieza de datos, regresiones y métricas de desempeño.
-      </li>
-      <li>
-        <b>Diseño de Base de Datos</b>, PUCP, 2023  
-        <br>Implementación en <b>Oracle SQL</b> con PL/SQL y reportes automatizados en <b>Power BI</b>.
-      </li>
-    </ul>
-
- 
-
-    <h2 class="section-title">ACTIVIDADES Y EXPERIENCIA</h2>
-    <ul class="list">
-      <li><b>AAII - PUCP (2025)</b> 
-        <br>Director en la mesa directiva, liderando iniciativas académicas y tecnológicas.</li>
-      <li><b>AWS Community Day Perú (2024)</b> 
-        <br>Apoyo a ponentes y soporte en operación de plataformas.</li>
-      <li><b>Capítulo CTSoc IEEE (2022)</b> 
-        <br>Diseño, pruebas y presentación de producto orientado al consumidor.</li>
-    </ul>
+      <section class="preview-pane" aria-label="Vista previa del CV">
+        <div class="preview-pane__toolbar">
+          <span class="preview-pane__label">Vista previa</span>
+          <div class="zoom-controls">
+            <button type="button" class="btn btn--ghost btn--sm" data-action="zoom-out" aria-label="Alejar">−</button>
+            <span id="zoomLabel">90%</span>
+            <button type="button" class="btn btn--ghost btn--sm" data-action="zoom-in" aria-label="Acercar">+</button>
+          </div>
+        </div>
+        <div class="preview-scroll">
+          <div id="previewScale" class="preview-scale">
+            <article id="cvPreview" class="cv cv--classic" aria-live="polite"></article>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
+
+  <div id="toast" class="toast" hidden role="status"></div>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
-

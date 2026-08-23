@@ -1,0 +1,299 @@
+/* CV document + templates */
+
+.cv {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 18mm 16mm;
+  background: #fff;
+  color: #111;
+  box-shadow: var(--shadow);
+  font-size: 11pt;
+  line-height: 1.4;
+}
+
+/* ——— Classic (inspired by original) ——— */
+.cv--classic {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.cv--classic .cv__rules {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+.cv--classic .cv__rule {
+  border: none;
+  margin: 0;
+  height: 0;
+}
+
+.cv--classic .cv__rule--thin {
+  border-top: 2px solid #000;
+}
+
+.cv--classic .cv__rule--thick {
+  border-top: 6px solid #000;
+}
+
+.cv--classic .cv__name {
+  margin: 6px 0 4px;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.cv--classic .cv__contact {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 10pt;
+}
+
+.cv--classic .cv__section {
+  margin-top: 14px;
+}
+
+.cv--classic .cv__section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-size: 11pt;
+  font-variant: small-caps;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.cv--classic .cv__section-title::before,
+.cv--classic .cv__section-title::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #000;
+}
+
+.cv--classic .cv__text {
+  margin: 0 12px 10px;
+  font-size: 10pt;
+  text-align: justify;
+}
+
+.cv--classic .cv__list {
+  margin: 0 0 10px 28px;
+  padding: 0;
+  font-size: 10pt;
+}
+
+.cv--classic .cv__list li {
+  margin-bottom: 7px;
+}
+
+.cv--classic .cv__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0 12px 10px;
+  font-size: 10pt;
+}
+
+/* ——— Modern ——— */
+.cv--modern {
+  font-family: "Outfit", system-ui, sans-serif;
+  padding: 16mm 15mm;
+  border-top: 8px solid #0b6e68;
+}
+
+.cv--modern .cv__name {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 26pt;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #0c1f1c;
+  line-height: 1.1;
+}
+
+.cv--modern .cv__contact {
+  margin: 8px 0 0;
+  font-size: 9.5pt;
+  color: #3a4f4a;
+}
+
+.cv--modern .cv__contact span + span::before {
+  content: " · ";
+  opacity: 0.5;
+}
+
+.cv--modern .cv__summary {
+  margin: 18px 0 0;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #243530;
+}
+
+.cv--modern .cv__section {
+  margin-top: 18px;
+}
+
+.cv--modern .cv__section-title {
+  margin: 0 0 8px;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0b6e68;
+  border-bottom: 1px solid rgba(11, 110, 104, 0.25);
+  padding-bottom: 4px;
+}
+
+.cv--modern .cv__entry {
+  margin-bottom: 10px;
+}
+
+.cv--modern .cv__entry-title {
+  font-weight: 600;
+  font-size: 10.5pt;
+}
+
+.cv--modern .cv__entry-meta {
+  font-size: 9pt;
+  color: #5a6e68;
+  margin-top: 1px;
+}
+
+.cv--modern .cv__entry-desc {
+  margin: 4px 0 0;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  color: #243530;
+}
+
+.cv--modern .cv__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv--modern .cv__chips li {
+  padding: 3px 10px;
+  border: 1px solid rgba(11, 110, 104, 0.3);
+  border-radius: 999px;
+  font-size: 9pt;
+  color: #0c1f1c;
+}
+
+.cv--modern .cv__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 10pt;
+}
+
+/* ——— Compact ——— */
+.cv--compact {
+  font-family: "Outfit", system-ui, sans-serif;
+  padding: 14mm 13mm;
+  font-size: 9.5pt;
+  columns: 1;
+}
+
+.cv--compact .cv__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #0c1f1c;
+  margin-bottom: 12px;
+}
+
+.cv--compact .cv__name {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.cv--compact .cv__contact {
+  margin: 0;
+  text-align: right;
+  font-size: 8.5pt;
+  line-height: 1.45;
+  color: #3a4f4a;
+}
+
+.cv--compact .cv__summary {
+  margin: 0 0 12px;
+  font-size: 9.5pt;
+  line-height: 1.45;
+}
+
+.cv--compact .cv__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 14px 18px;
+}
+
+.cv--compact .cv__section-title {
+  margin: 0 0 6px;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c45c26;
+}
+
+.cv--compact .cv__section {
+  margin-bottom: 12px;
+  break-inside: avoid;
+}
+
+.cv--compact .cv__entry {
+  margin-bottom: 8px;
+}
+
+.cv--compact .cv__entry-title {
+  font-weight: 600;
+  font-size: 9.5pt;
+}
+
+.cv--compact .cv__entry-meta {
+  font-size: 8pt;
+  color: #5a6e68;
+}
+
+.cv--compact .cv__entry-desc {
+  margin: 2px 0 0;
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+.cv--compact .cv__list-plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv--compact .cv__list-plain li {
+  margin-bottom: 4px;
+  font-size: 9pt;
+}
+
+.cv--compact .cv__list-plain li::before {
+  content: "– ";
+  color: #c45c26;
+}
+
+/* shared empty state inside preview */
+.cv__empty {
+  opacity: 0.45;
+  font-style: italic;
+}
